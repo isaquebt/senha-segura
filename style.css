@@ -1,0 +1,79 @@
+/* Variáveis de exemplo (caso não tenha no seu projeto) */
+:root {
+    --borda: #ccc;
+    --fundo-senha: #e0e0e0;
+}
+
+.parametro-senha__texto {
+    padding: 24px;
+    border-top: 2px solid var(--borda);
+    border-bottom: 2px solid var(--borda);
+    margin: 0;
+    font-size: 24px;
+}
+
+label {
+    font-size: 20px;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* --- CORREÇÃO DA BARRA DE FORÇA --- */
+
+/* Criamos um container relativo para servir de base para a barra colorida */
+.barra-container {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    margin-bottom: 10px; /* Dá um espaço para os textos não colarem na barra */
+}
+
+/* Fundo cinza da barra */
+.barra {
+    background-color: var(--fundo-senha);
+    height: 100%;
+    width: 100%;
+    border-radius: 4px; /* Opcional: deixa as bordas arredondadas e mais modernas */
+}
+
+/* A barra colorida fica por cima (absolute) começando do canto superior esquerdo */
+.forca {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease, background-color 0.3s ease; /* Animação suave ao mudar de cor/tamanho */
+    border-radius: 4px; /* Opcional: acompanha o arredondado */
+}
+
+/* Estados da força */
+.fraca {
+    width: 25%;
+    background-color: #E71B32; 
+}
+
+.media {
+    width: 50%;
+    background-color: #FAF408;
+}
+
+.forte {
+    width: 100%;
+    background-color: #00FF85;
+}
+
+/* Alinhamento dos textos abaixo da barra */
+.parametro-senha-textos {
+    display: flex;
+    justify-content: space-between;
+}
+
+.parametro-senha-textos p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
