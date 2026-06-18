@@ -1,79 +1,225 @@
-/* Variáveis de exemplo (caso não tenha no seu projeto) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+
 :root {
-    --borda: #ccc;
-    --fundo-senha: #e0e0e0;
+    --branco: #ffffff;
+    --cor-de-fundo: #000000;
+    --fundo-senha: #cfd9e4;
+    --fundo-texto: #454749;
+    --borda: #0075FF;
+    --texto-escuro: #1a1a1a; /* Nova variável para legibilidade */
+    --roboto: 'Roboto', sans-serif;
+    --roboto-mono: 'Roboto Mono', monospace;
+}
+
+* {
+    box-sizing: border-box; /* Garante que padding e border não quebrem o tamanho dos elementos */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: var(--branco);
+    background-color: var(--cor-de-fundo);
+    font-family: var(--roboto);
+    font-weight: 400; /* Corrigido de 40 para 400 (padrão) */
+}
+
+/* --- Layout Principal --- */
+
+.conteudo {
+    max-width: 800px; /* Corrigido de 40px para 800px para o conteúdo respirar */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.conteudo-titulo {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.titulo-principal {
+    font-family: var(--roboto-mono);
+    font-size: 32px;
+    margin-top: 15px;
+}
+
+.titulo-secundario {
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/* --- Campo de Senha --- */
+
+.conteudo-senha {
+    margin-top: 40px; 
+    background: var(--fundo-senha);
+    padding: 24px;
+    border-bottom: 6px solid var(--borda);
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.conteudo-senha label {
+    color: var(--texto-escuro); /* Mudado para escuro para dar contraste no fundo claro */
+    font-weight: bold;
+}
+
+#campo-senha {
+    background-color: transparent;
+    border: none;
+    color: var(--texto-escuro); /* Mudado para escuro para ficar legível */
+    font-family: var(--roboto-mono);
+    font-size: 32px;
+    width: 100%;
+}
+
+#campo-senha:focus {
+    outline: none;
+}
+
+/* --- Parâmetros (Configurações) --- */
+
+.parametro {
+    background-color: var(--fundo-texto);
+    border: 2px solid var(--borda);
+    margin-top: 32px;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.parametro-titulo {
+    font-family: var(--roboto-mono);
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.parametro-coluna__senha {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.parametro-senha {
+    width: 100%; /* Mudado para ocupar tudo no mobile */
+}
+
+.parametro-senha__titulo {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* --- Botões de Tamanho --- */
+
+.parametro-senha-botoes {
+    display: flex;
+    align-items: center;
+}
+
+.parametro-senha__botao {
+    background-color: var(--fundo-texto);
+    color: var(--branco);
+    border: 2px solid var(--borda);
+    padding: 12px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.parametro-senha__botao:hover {
+    background-color: var(--borda);
 }
 
 .parametro-senha__texto {
-    padding: 24px;
+    padding: 12px 24px;
     border-top: 2px solid var(--borda);
     border-bottom: 2px solid var(--borda);
     margin: 0;
-    font-size: 24px;
-}
-
-label {
     font-size: 20px;
+    font-family: var(--roboto-mono);
 }
 
-.checkbox {
-    width: 20px;
-    height: 20px;
+/* --- Checkboxes --- */
+
+.parametro-senha-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.parametro-senha-checkbox label {
     cursor: pointer;
 }
 
-/* --- CORREÇÃO DA BARRA DE FORÇA --- */
-
-/* Criamos um container relativo para servir de base para a barra colorida */
-.barra-container {
-    position: relative;
-    height: 30px;
-    width: 100%;
-    margin-bottom: 10px; /* Dá um espaço para os textos não colarem na barra */
+.checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
 }
 
-/* Fundo cinza da barra */
+/* --- Barra de Força --- */
+
 .barra {
-    background-color: var(--fundo-senha);
-    height: 100%;
+    background-color: #2e3032;
+    height: 12px;
     width: 100%;
-    border-radius: 4px; /* Opcional: deixa as bordas arredondadas e mais modernas */
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
-/* A barra colorida fica por cima (absolute) começando do canto superior esquerdo */
 .forca {
     height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 0.3s ease, background-color 0.3s ease; /* Animação suave ao mudar de cor/tamanho */
-    border-radius: 4px; /* Opcional: acompanha o arredondado */
+    transition: width 0.3s ease;
 }
 
-/* Estados da força */
-.fraca {
-    width: 25%;
-    background-color: #E71B32; 
-}
+.fraca { width: 33%; background-color: #E71B32; }
+.media { width: 66%; background-color: #FAF408; }
+.forte { width: 100%; background-color: #00FF87; } /* Um verde destaca melhor a força forte */
 
-.media {
-    width: 50%;
-    background-color: #FAF408;
-}
-
-.forte {
-    width: 100%;
-    background-color: #00FF85;
-}
-
-/* Alinhamento dos textos abaixo da barra */
 .parametro-senha-textos {
     display: flex;
     justify-content: space-between;
+    font-size: 14px;
+    opacity: 0.7;
 }
 
-.parametro-senha-textos p {
-    margin: 0;
-    font-size: 14px;
-    color: #555;
+/* --- Rodapé --- */
+
+.meu-footer {
+    background-color: #1a1a1a; 
+    color: #ffffff; 
+    padding: 30px 0; 
+    text-align: center; 
+    margin-top: 80px;
+    border-top: 1px solid #333;
+}
+
+.meu-footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links {
+    list-style: none;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* --- Responsividade (Telas Maiores) --- */
+
+@media screen and (min-width: 768px) {
+    .parametro-coluna__senha {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .parametro-senha {
+        width: 30%; /* Distribui as 3 colunas lado a lado */
+    }
 }
